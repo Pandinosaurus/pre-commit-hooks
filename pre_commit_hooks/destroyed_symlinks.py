@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import shlex
 import subprocess
-from typing import Sequence
+from collections.abc import Sequence
 
 from pre_commit_hooks.util import cmd_output
 from pre_commit_hooks.util import zsplit
@@ -76,11 +76,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         for destroyed_link in destroyed_links:
             print(f'- {destroyed_link}')
         print('You should unstage affected files:')
-        print(
-            '\tgit reset HEAD -- {}'.format(
-                ' '.join(shlex.quote(link) for link in destroyed_links),
-            ),
-        )
+        print(f'\tgit reset HEAD -- {shlex.join(destroyed_links)}')
         print(
             'And retry commit. As a long term solution '
             'you may try to explicitly tell git that your '

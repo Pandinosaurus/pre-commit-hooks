@@ -3,11 +3,12 @@ from __future__ import annotations
 import argparse
 import ast
 import traceback
+from collections.abc import Sequence
 from typing import NamedTuple
-from typing import Sequence
 
 
 DEBUG_STATEMENTS = {
+    'bpdb',
     'ipdb',
     'pdb',
     'pdbr',
